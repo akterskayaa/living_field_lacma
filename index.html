@@ -655,6 +655,452 @@ h1 {
 }
 
 /* ══════════════════════════════════
+   SUMMARY SLIDE
+══════════════════════════════════ */
+.summary-section {
+  padding: 100px 64px;
+  border-bottom: 1px solid var(--line);
+  background: var(--white);
+}
+
+.summary-label {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 96px);
+  letter-spacing: 0.02em;
+  color: var(--black);
+  margin-bottom: 56px;
+  line-height: 1;
+}
+
+/* ── INFOGRAPHIC ── */
+.infographic {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: var(--font-sans);
+}
+
+/* TOP ROW */
+.ig-top {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  border-bottom: 1px solid #e8e8e8;
+  align-items: stretch;
+}
+
+/* LEFT PANEL */
+.ig-left {
+  padding: 32px 28px;
+  border-right: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: column;
+}
+
+.ig-title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  line-height: 0.9;
+  color: #0a0a08;
+  letter-spacing: 0.01em;
+  margin-bottom: 8px;
+}
+
+.ig-subtitle-purple {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--purple);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.ig-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 10px;
+}
+.ig-desc strong { color: #0a0a08; }
+
+.ig-divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 16px 0;
+}
+
+.ig-three-lines { margin-bottom: 20px; }
+
+.ig-tl-line {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #0a0a08;
+  line-height: 1.6;
+}
+.ig-tl-line.purple { color: var(--purple); }
+
+.ig-optional-box {
+  background: #f0edfb;
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-top: auto;
+}
+
+.ig-optional-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  margin-bottom: 8px;
+}
+
+.ig-optional-box p {
+  font-size: 11px;
+  line-height: 1.55;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.ig-passive-active {
+  display: flex;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.ig-passive { color: #888; }
+.ig-sep { color: #ccc; }
+.ig-active { color: var(--purple); }
+
+/* RIGHT: HOW IT WORKS */
+.ig-right { padding: 24px 20px 0; display: flex; flex-direction: column; min-height: 100%; }
+
+.ig-how-header {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  margin-bottom: 20px;
+}
+
+.ig-steps {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+}
+
+.ig-step {
+  padding: 0 12px 0 0;
+  border-right: 1px solid #eee;
+  position: relative;
+}
+.ig-step.last { border-right: none; padding-right: 0; }
+.ig-step:not(:first-child) { padding-left: 12px; }
+
+.ig-step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.ig-step-icon {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.artwork-thumb {
+  width: 100%;
+  height: 56px;
+  background: linear-gradient(135deg, #3b1fa8, #7c3aed, #c084fc);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.artwork-thumb-inner {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 30% 40%, rgba(200,180,255,0.8) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 60%, rgba(107,79,216,0.9) 0%, transparent 50%);
+}
+
+.ig-step-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #0a0a08;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.ig-step-body {
+  font-size: 11px;
+  line-height: 1.55;
+  color: #666;
+}
+
+/* EQUATION — inside ig-right */
+.ig-equation {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 20px 0;
+  border-top: 1px solid #e8e8e8;
+  margin-top: 20px;
+  background: #fafafa;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-left: 20px;
+  padding-right: 16px;
+}
+
+.ig-eq-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.ig-eq-item.wide { flex: 1.8; }
+
+.ig-eq-visual {
+  width: 100%;
+  height: 130px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.museum-photo {
+  background: #b8a48c;
+  position: relative;
+  overflow: hidden;
+}
+.museum-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to bottom, rgba(180,160,130,0.3) 0%, transparent 40%),
+    linear-gradient(135deg, #c8b49a 0%, #a08060 50%, #7a5c3a 100%);
+}
+.museum-photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(30,20,10,0.5), transparent);
+}
+/* Museum silhouette figures */
+.museum-photo .museum-figures {
+  position: absolute;
+  bottom: 12px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 2;
+}
+.museum-photo .fig {
+  width: 8px;
+  background: rgba(10,8,5,0.7);
+  border-radius: 4px 4px 0 0;
+}
+
+.ai-circle {
+  background: white;
+  border: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.ai-circle svg { width: 90px; height: 90px; }
+
+.mural-photo {
+  background: linear-gradient(120deg, #2d0d7a 0%, #5b21b6 30%, #7c3aed 55%, #a855f7 75%, #c084fc 100%);
+  position: relative;
+  overflow: hidden;
+}
+.mural-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 25% 60%, rgba(255,255,255,0.12) 0%, transparent 45%),
+    radial-gradient(ellipse at 70% 30%, rgba(220,180,255,0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(100,60,200,0.4) 0%, transparent 40%);
+}
+.mural-photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 35%;
+  background: linear-gradient(to top, rgba(15,5,50,0.6), transparent);
+}
+/* Silhouette people in front of mural */
+.mural-photo .mural-figures {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 10px;
+  z-index: 2;
+}
+.mural-photo .mfig {
+  background: rgba(5,0,20,0.85);
+  border-radius: 3px 3px 0 0;
+}
+
+.ig-eq-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #333;
+  text-align: center;
+}
+.ig-eq-label.purple { color: var(--purple); }
+
+.ig-eq-op {
+  font-size: 28px;
+  font-weight: 300;
+  color: #999;
+  padding: 0 16px;
+  flex-shrink: 0;
+  margin-bottom: 24px;
+}
+.ig-eq-op.arrow { font-size: 32px; color: #555; }
+
+.ig-eq-side {
+  flex-shrink: 0;
+  width: 180px;
+  padding-left: 24px;
+  border-left: 1px solid #e8e8e8;
+  margin-left: 16px;
+}
+
+.ig-side-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--purple);
+  margin-bottom: 14px;
+  line-height: 1.35;
+}
+
+.ig-side-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 11px;
+  color: #555;
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.ig-side-item svg { flex-shrink: 0; margin-top: 1px; }
+
+/* MECHANICS */
+.ig-mechanics {
+  padding: 24px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.ig-mechanics-header {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.ig-mechanics-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+}
+
+.ig-mechanic {
+  padding: 0 12px;
+  border-right: 1px solid #eee;
+  text-align: center;
+}
+.ig-mechanic:last-child { border-right: none; }
+.ig-mechanic.wide-mech { text-align: left; }
+
+.ig-mechanic svg {
+  display: block;
+  margin: 0 auto 10px;
+}
+.ig-mechanic.wide-mech svg { margin: 0 0 10px; }
+
+.ig-mech-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #0a0a08;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.ig-mech-title.purple { color: var(--purple); }
+
+.ig-mechanic p {
+  font-size: 10px;
+  line-height: 1.5;
+  color: #666;
+}
+
+/* FOOTER BAR */
+.ig-footer-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #0a0a08;
+  padding: 20px 24px;
+  gap: 0;
+}
+
+.ig-footer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 0 20px 0 0;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.ig-footer-item:last-child { border-right: none; padding-left: 20px; padding-right: 0; }
+.ig-footer-item:nth-child(2), .ig-footer-item:nth-child(3) { padding-left: 20px; }
+
+.ig-footer-item svg { flex-shrink: 0; margin-top: 2px; }
+
+.ig-footer-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: white;
+  margin-bottom: 6px;
+}
+
+.ig-footer-item p {
+  font-size: 10px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ══════════════════════════════════
    MANIFESTO
 ══════════════════════════════════ */
 .manifesto-section {
@@ -757,7 +1203,7 @@ h1 {
   <div class="hero-center">
     <div class="hero-eyebrow"><span></span>A relational layer for existing exhibitions</div>
     <h1>LIVING<br>FIELD</h1>
-    <p class="hero-subtitle">A scalable, AI-mediated system that adds a relational layer to museum exhibitions — transforming visitors from passive observers into co-creators of a shared, evolving artwork.</p>
+    <p class="hero-subtitle">A scalable, AI-mediated system that adds a relational layer to museum exhibitions—transforming visitors from passive observers into co-creators of a shared, evolving artwork.</p>
   </div>
 
   <div class="hero-bottom">
@@ -778,7 +1224,7 @@ h1 {
       What is missing is not information—but <strong>connection.</strong>
     </p>
     <p class="question-text reveal reveal-delay-2">
-      What if the museum was not a place<br>to look at art — but a place where<br>art happens <em>between</em> people?
+      What if the museum was not a place<br>to look at art—but a place where<br>art happens <em>between</em> people?
     </p>
   </div>
 </section>
@@ -824,7 +1270,7 @@ h1 {
     <div class="step-card reveal reveal-delay-2">
       <div class="step-card-num">3</div>
       <div class="step-card-title">People interact<br>with each other</div>
-      <p class="step-card-body">Participants engage in micro-interactions, collaborations and shared moments — both with others and in response to the artworks.</p>
+      <p class="step-card-body">Participants engage in micro-interactions, collaborations and shared moments—both with others and in response to the artworks.</p>
     </div>
     <div class="step-card reveal reveal-delay-3">
       <div class="step-card-num">4</div>
@@ -839,7 +1285,7 @@ h1 {
     <div class="step-card reveal reveal-delay-5">
       <div class="step-card-num">6</div>
       <div class="step-card-title">New artwork<br>emerges</div>
-      <p class="step-card-body">A dynamic artwork — a living mural — emerges in real time, reflecting the human relationships within this exhibition, on this day.</p>
+      <p class="step-card-body">A dynamic artwork—a living mural—emerges in real time, reflecting the human relationships within this exhibition, on this day.</p>
     </div>
   </div>
 </section>
@@ -855,12 +1301,12 @@ h1 {
     <div class="dual-card dual-card-passive reveal">
       <div class="dual-card-tag">Passive visit</div>
       <div class="dual-card-title">The exhibition<br>as it always was</div>
-      <p class="dual-card-body">Visitors can experience the exhibition as usual — moving through the space at their own pace, engaging with artworks, following their own path. The traditional museum experience remains fully intact.</p>
+      <p class="dual-card-body">Visitors can experience the exhibition as usual—moving through the space at their own pace, engaging with artworks, following their own path. The traditional museum experience remains fully intact.</p>
     </div>
     <div class="dual-card dual-card-active reveal reveal-delay-2">
       <div class="dual-card-tag">Active participation</div>
       <div class="dual-card-title">A parallel experience<br>shaped by interaction</div>
-      <p class="dual-card-body">Those who enter the system step into a parallel experience — one that unfolds through interaction, presence, and choice. Guided by spatial audio and AI-mediated prompts, participants become co-creators of something that did not exist before they arrived.</p>
+      <p class="dual-card-body">Those who enter the system step into a parallel experience—one that unfolds through interaction, presence, and choice. Guided by spatial audio and AI-mediated prompts, participants become co-creators of something that did not exist before they arrived.</p>
     </div>
   </div>
 
@@ -882,9 +1328,9 @@ h1 {
     <div class="artwork-content reveal reveal-delay-2">
       <div class="section-label" data-n="—" style="color:rgba(247,244,238,0.3)">The living artwork</div>
       <h3>A new artwork emerges<br>from the people within it</h3>
-      <p>Each exhibition invites a different artist to engage with this field — not to illustrate it, but to interpret it. Using their own visual language, the artist transforms collective interaction into a real-time, evolving mural.</p>
+      <p>Each exhibition invites a different artist to engage with this field—not to illustrate it, but to interpret it. Using their own visual language, the artist transforms collective interaction into a real-time, evolving mural.</p>
       <p>It is generated continuously. Shaped by presence. Changed by behavior. No two iterations are the same.</p>
-      <p>In parallel, each participant receives a personal reflection — a short, AI-generated narrative that mirrors how they moved through the system, how they related, how they chose.</p>
+      <p>In parallel, each participant receives a personal reflection—a short, AI-generated narrative that mirrors how they moved through the system, how they related, how they chose.</p>
 
       <div class="artwork-tags">
         <div class="artwork-tag">Dynamic &amp; unique every time</div>
@@ -907,7 +1353,7 @@ h1 {
     <div class="scale-cell reveal">
       <div class="scale-cell-icon">⬡</div>
       <div class="scale-cell-title">Scalable &amp; adaptable</div>
-      <p class="scale-cell-body">Works in any museum, any exhibition, any cultural context. The system adapts — the exhibition changes, the artist changes, the people change.</p>
+      <p class="scale-cell-body">Works in any museum, any exhibition, any cultural context. The system adapts—the exhibition changes, the artist changes, the people change.</p>
     </div>
     <div class="scale-cell reveal reveal-delay-1">
       <div class="scale-cell-icon">◎</div>
@@ -938,7 +1384,7 @@ h1 {
     </div>
     <div class="lacma-cell reveal reveal-delay-1">
       <div class="lacma-q">Emerging technology</div>
-      <p class="lacma-a">Living Field integrates spatial audio, real-time data processing, and generative AI not as tools for representation, but as mediators of human interaction. AI functions as an active agent: facilitating encounters, shaping participant pathways, generating narrative responses. An alternative paradigm for human–AI interaction that is relational, spatial, embodied.</p>
+      <p class="lacma-a">Living Field integrates spatial audio, real-time data processing, and generative AI—not as tools for representation, but as mediators of human interaction. AI functions as an active agent: facilitating encounters, shaping participant pathways, generating narrative responses. An alternative paradigm for human–AI interaction that is relational, spatial, embodied.</p>
     </div>
     <div class="lacma-cell reveal reveal-delay-2">
       <div class="lacma-q">Models &amp; methods for others</div>
@@ -951,10 +1397,229 @@ h1 {
   </div>
 </section>
 
+<!-- ══ SUMMARY SLIDE ══ -->
+<section class="summary-section">
+  <div class="summary-label reveal">In short</div>
+
+  <div class="infographic reveal reveal-delay-1">
+
+    <!-- TOP ROW: left panel + 6 steps -->
+    <div class="ig-top">
+
+      <!-- LEFT PANEL -->
+      <div class="ig-left">
+        <div class="ig-title">LIVING<br>FIELD</div>
+        <div class="ig-subtitle-purple">A RELATIONAL LAYER FOR<br>EXISTING EXHIBITIONS</div>
+        <p class="ig-desc">Living Field is an AI-mediated system that adds an optional relational layer to any exhibition.</p>
+        <p class="ig-desc">It transforms a traditional museum visit into a <strong>dual experience—where human interaction becomes the content and a new artwork emerges in real time.</strong></p>
+        <div class="ig-divider"></div>
+        <div class="ig-three-lines">
+          <div class="ig-tl-line">THE EXHIBITION IS THE CONTEXT.</div>
+          <div class="ig-tl-line purple">HUMAN INTERACTION IS THE CONTENT.</div>
+          <div class="ig-tl-line">THE ARTWORK IS THE RESULT.</div>
+        </div>
+        <div class="ig-optional-box">
+          <div class="ig-optional-header">
+            <svg width="28" height="22" viewBox="0 0 28 22" fill="none"><circle cx="8" cy="8" r="5" stroke="#6b4fd8" stroke-width="1.5"/><circle cx="20" cy="8" r="5" stroke="#6b4fd8" stroke-width="1.5"/><path d="M1 21c0-3.866 3.134-7 7-7h12c3.866 0 7 3.134 7 7" stroke="#6b4fd8" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>OPTIONAL PARTICIPATION</span>
+          </div>
+          <p>Visitors can experience the exhibition as usual, or choose to activate the Living Field layer via the headphones.</p>
+          <div class="ig-passive-active">
+            <span class="ig-passive">PASSIVE VISIT</span>
+            <span class="ig-sep">|</span>
+            <span class="ig-active">ACTIVE PARTICIPATION</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: HOW IT WORKS -->
+      <div class="ig-right">
+        <div class="ig-how-header">HOW IT WORKS</div>
+        <div class="ig-steps">
+          <div class="ig-step">
+            <div class="ig-step-num">1</div>
+            <div class="ig-step-connector"></div>
+            <div class="ig-step-icon">
+              <svg width="52" height="48" viewBox="0 0 52 48" fill="none"><rect x="4" y="20" width="44" height="24" rx="2" stroke="#222" stroke-width="1.5"/><rect x="10" y="28" width="8" height="16" rx="1" fill="#222" opacity="0.15"/><rect x="22" y="28" width="8" height="16" rx="1" fill="#222" opacity="0.15"/><rect x="34" y="28" width="8" height="16" rx="1" fill="#222" opacity="0.15"/><path d="M2 20h48M14 20V10M38 20V10M8 10h36" stroke="#222" stroke-width="1.5" stroke-linecap="round"/><path d="M10 10V6h32v4" stroke="#222" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="ig-step-title">EXHIBITION<br>AS CONTEXT</div>
+            <p class="ig-step-body">Any exhibition in any museum becomes the context. Its themes, artworks and narratives serve as the starting point.</p>
+          </div>
+          <div class="ig-step">
+            <div class="ig-step-num">2</div>
+            <div class="ig-step-connector"></div>
+            <div class="ig-step-icon">
+              <svg width="52" height="48" viewBox="0 0 52 48" fill="none"><circle cx="26" cy="20" r="14" stroke="#6b4fd8" stroke-width="1.5"/><path d="M20 20c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#6b4fd8" stroke-width="1.5"/><circle cx="26" cy="20" r="3" fill="#6b4fd8"/><path d="M40 20c0 2 1 4 2 5M44 18c1 3 1 6 0 9" stroke="#6b4fd8" stroke-width="1.5" stroke-linecap="round"/><path d="M26 34v8" stroke="#6b4fd8" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="ig-step-title">AI NAVIGATION +<br>INTERACTION SCRIPT</div>
+            <p class="ig-step-body">Visitors put on headphones. The AI guide navigates them through the exhibition and invites them to take part in simple, meaningful interactions.</p>
+          </div>
+          <div class="ig-step">
+            <div class="ig-step-num">3</div>
+            <div class="ig-step-connector"></div>
+            <div class="ig-step-icon">
+              <svg width="52" height="48" viewBox="0 0 52 48" fill="none"><circle cx="18" cy="16" r="7" stroke="#222" stroke-width="1.5"/><circle cx="34" cy="16" r="7" stroke="#222" stroke-width="1.5"/><path d="M4 44c0-7.732 6.268-14 14-14M34 30c7.732 0 14 6.268 14 14" stroke="#222" stroke-width="1.5" stroke-linecap="round"/><rect x="20" y="18" width="12" height="10" rx="2" stroke="#222" stroke-width="1.3"/><path d="M26 14v4M23 28l3 4 3-4" stroke="#222" stroke-width="1.3" stroke-linecap="round"/></svg>
+            </div>
+            <div class="ig-step-title">PEOPLE INTERACT<br>WITH EACH OTHER<br>AND WITH ART</div>
+            <p class="ig-step-body">Participants engage in micro-interactions, collaborations and shared moments—both with others and in response to the artworks.</p>
+          </div>
+          <div class="ig-step">
+            <div class="ig-step-num">4</div>
+            <div class="ig-step-connector"></div>
+            <div class="ig-step-icon">
+              <svg width="52" height="48" viewBox="0 0 52 48" fill="none"><circle cx="10" cy="14" r="2" fill="#222" opacity="0.3"/><circle cx="18" cy="8" r="2" fill="#222" opacity="0.4"/><circle cx="26" cy="18" r="2.5" fill="#222" opacity="0.6"/><circle cx="34" cy="10" r="2" fill="#222" opacity="0.5"/><circle cx="42" cy="16" r="2" fill="#222" opacity="0.3"/><circle cx="14" cy="24" r="2" fill="#222" opacity="0.5"/><circle cx="22" cy="30" r="3" fill="#222" opacity="0.7"/><circle cx="32" cy="26" r="2.5" fill="#222" opacity="0.6"/><circle cx="40" cy="32" r="2" fill="#222" opacity="0.4"/><circle cx="8" cy="36" r="1.5" fill="#222" opacity="0.3"/><circle cx="18" cy="40" r="2" fill="#222" opacity="0.5"/><circle cx="30" cy="40" r="1.5" fill="#222" opacity="0.4"/><circle cx="44" cy="42" r="1.5" fill="#222" opacity="0.3"/></svg>
+            </div>
+            <div class="ig-step-title">BEHAVIORAL DATA<br>IS GENERATED</div>
+            <p class="ig-step-body">The system captures anonymized data about interactions, movement, proximity, responses and collective dynamics in real time.</p>
+          </div>
+          <div class="ig-step">
+            <div class="ig-step-num">5</div>
+            <div class="ig-step-connector"></div>
+            <div class="ig-step-icon">
+              <svg width="52" height="48" viewBox="0 0 52 48" fill="none"><path d="M12 36 Q20 20 32 28 Q38 32 44 16" stroke="#222" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="44" cy="14" r="3" fill="#222" opacity="0.3"/><path d="M40 38 L46 32 M46 38 L40 32" stroke="#222" stroke-width="1.5" stroke-linecap="round"/><path d="M8 42 L14 36 M14 42 L8 36" stroke="#222" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="ig-step-title">ARTIST TRANSLATES<br>DATA INTO VISUAL<br>LANGUAGE</div>
+            <p class="ig-step-body">A collaborating artist interprets the collective patterns and translates them into a unique visual language and aesthetic approach.</p>
+          </div>
+          <div class="ig-step last">
+            <div class="ig-step-num">6</div>
+            <div class="ig-step-icon" style="width:100%;height:60px;border-radius:3px;overflow:hidden;">
+              <img src="mural.png" style="width:100%;height:100%;object-fit:cover;border-radius:3px;" alt="mural">
+            </div>
+            <div class="ig-step-title">NEW ARTWORK<br>EMERGES OVER<br>THE EXHIBITION</div>
+            <p class="ig-step-body">A dynamic artwork—a living mural—emerges in real time, reflecting the human relationships within this exhibition, on this day.</p>
+          </div>
+        </div>
+
+        <!-- EQUATION — inside ig-right, below steps -->
+        <div class="ig-equation">
+          <div class="ig-eq-item">
+            <div class="ig-eq-visual" style="border-radius:4px;overflow:hidden;"><img src="exhibition.png" style="width:100%;height:100%;object-fit:cover;" alt="exhibition"></div>
+            <div class="ig-eq-label">EXHIBITION</div>
+          </div>
+          <div class="ig-eq-op">+</div>
+          <div class="ig-eq-item">
+            <div class="ig-eq-visual ai-circle">
+              <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="60" r="54" stroke="#6b4fd8" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <circle cx="60" cy="28" r="10" stroke="#6b4fd8" stroke-width="1.5"/>
+                <path d="M60 38v12" stroke="#6b4fd8" stroke-width="1.5"/>
+                <circle cx="88" cy="76" r="10" stroke="#6b4fd8" stroke-width="1.5"/>
+                <path d="M79 70l-10-6" stroke="#6b4fd8" stroke-width="1.5"/>
+                <circle cx="32" cy="76" r="10" stroke="#6b4fd8" stroke-width="1.5"/>
+                <path d="M41 70l10-6" stroke="#6b4fd8" stroke-width="1.5"/>
+                <circle cx="60" cy="60" r="8" stroke="#6b4fd8" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="ig-eq-label">AI LAYER + PARTICIPANTS</div>
+          </div>
+          <div class="ig-eq-op arrow">→</div>
+          <div class="ig-eq-item wide">
+            <div class="ig-eq-visual" style="border-radius:4px;overflow:hidden;"><img src="main_field.png" style="width:100%;height:100%;object-fit:cover;" alt="living artwork"></div>
+            <div class="ig-eq-label purple">LIVING ARTWORK EMERGES</div>
+          </div>
+          <div class="ig-eq-side">
+            <div class="ig-side-title">DYNAMIC &amp; UNIQUE<br>EVERY TIME</div>
+            <div class="ig-side-item">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8a6 6 0 1112 0A6 6 0 012 8z" stroke="#6b4fd8" stroke-width="1.2"/><path d="M8 4v5l3 2" stroke="#6b4fd8" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Changes every day
+            </div>
+            <div class="ig-side-item">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6" cy="5" r="3" stroke="#6b4fd8" stroke-width="1.2"/><circle cx="11" cy="5" r="3" stroke="#6b4fd8" stroke-width="1.2"/><path d="M1 15c0-3 2-5 5-5M10 10c3 0 5 2 5 5" stroke="#6b4fd8" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Shaped by the people who are there
+            </div>
+            <div class="ig-side-item">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 3.5L13 6l-2.5 2.5.5 3.5L8 10.5 5 12l.5-3.5L3 6l3.5-.5z" stroke="#6b4fd8" stroke-width="1.2" stroke-linejoin="round"/></svg>
+              Each exhibition creates its own visual signature
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /ig-right -->
+    </div><!-- /ig-top -->
+
+    <!-- BOTTOM ROW: mechanics -->
+    <div class="ig-mechanics">
+      <div class="ig-mechanics-header">EXAMPLES OF INTERACTION MECHANICS</div>
+      <div class="ig-mechanics-grid">
+        <div class="ig-mechanic">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="14" cy="13" r="7" stroke="#6b4fd8" stroke-width="1.4"/><circle cx="28" cy="13" r="7" stroke="#6b4fd8" stroke-width="1.4" stroke-dasharray="3 2"/><path d="M2 36c0-6.627 5.373-12 12-12" stroke="#6b4fd8" stroke-width="1.4" stroke-linecap="round"/><path d="M26 24c6.627 0 12 5.373 12 12" stroke="#6b4fd8" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <div class="ig-mech-title">AI PAIRING</div>
+          <p>Find and connect with someone the AI matches you with.</p>
+        </div>
+        <div class="ig-mechanic">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="6" width="32" height="22" rx="4" stroke="#6b4fd8" stroke-width="1.4"/><path d="M12 17h16M12 12h10" stroke="#6b4fd8" stroke-width="1.4" stroke-linecap="round"/><path d="M20 28l-4 6h8l-4-6z" stroke="#6b4fd8" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          <div class="ig-mech-title">QUESTION PROMPTS</div>
+          <p>Ask, listen, and share answers with others around you.</p>
+        </div>
+        <div class="ig-mechanic">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="16" width="14" height="14" rx="2" stroke="#6b4fd8" stroke-width="1.4"/><rect x="22" y="16" width="14" height="14" rx="2" stroke="#6b4fd8" stroke-width="1.4"/><rect x="13" y="8" width="14" height="10" rx="2" stroke="#6b4fd8" stroke-width="1.4"/><path d="M11 23h18M11 16l9-8 9 8" stroke="#6b4fd8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="ig-mech-title">COLLABORATIVE TASKS</div>
+          <p>Complete small challenges or creative tasks together.</p>
+        </div>
+        <div class="ig-mechanic">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#6b4fd8" stroke-width="1.4"/><circle cx="20" cy="20" r="6" stroke="#6b4fd8" stroke-width="1.4" stroke-dasharray="3 2"/><circle cx="20" cy="20" r="2" fill="#6b4fd8"/></svg>
+          <div class="ig-mech-title">MOVEMENT ZONES</div>
+          <p>Enter zones where movement and presence create shared visuals.</p>
+        </div>
+        <div class="ig-mechanic">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="8" y="10" width="24" height="18" rx="3" stroke="#6b4fd8" stroke-width="1.4"/><circle cx="20" cy="19" r="5" stroke="#6b4fd8" stroke-width="1.4"/><circle cx="20" cy="19" r="2" fill="#6b4fd8"/><path d="M8 32h24" stroke="#6b4fd8" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <div class="ig-mech-title">MEMORY WALL</div>
+          <p>Capture a moment together and leave a trace on the wall.</p>
+        </div>
+        <div class="ig-mechanic">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M8 24 Q11 18 14 24 Q17 30 20 20 Q23 10 26 20 Q29 30 32 24" stroke="#6b4fd8" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+          <div class="ig-mech-title">VOICE CONTRIBUTIONS</div>
+          <p>Add your voice to a collective sound composition.</p>
+        </div>
+        <div class="ig-mechanic wide-mech">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M20 8 L24 16 L33 17 L27 23 L28 32 L20 28 L12 32 L13 23 L7 17 L16 16 Z" stroke="#6b4fd8" stroke-width="1.4" stroke-linejoin="round"/><path d="M20 4 L21 6 M20 4 L19 6 M30 8 L28 10 M10 8 L12 10" stroke="#6b4fd8" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <div class="ig-mech-title purple">PERSONAL NARRATIVE REFLECTION</div>
+          <p>Each participant receives a personalized AI-generated story or reflection based on their mode of participation and interactions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER BAR -->
+    <div class="ig-footer-bar">
+      <div class="ig-footer-item">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="2" y="2" width="24" height="24" rx="3" stroke="white" stroke-width="1.4"/><path d="M8 14h12M14 8v12" stroke="white" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <div>
+          <div class="ig-footer-title">SCALABLE &amp; ADAPTABLE</div>
+          <p>Works in any museum, any exhibition, any cultural context.</p>
+        </div>
+      </div>
+      <div class="ig-footer-item">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4 L14 12 M10 8 L14 4 L18 8" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="18" r="6" stroke="white" stroke-width="1.4"/><path d="M11 18 L13 20 L17 16" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div>
+          <div class="ig-footer-title">A LIVING LABORATORY</div>
+          <p>Each implementation is a sandbox for testing new social interaction models.</p>
+        </div>
+      </div>
+      <div class="ig-footer-item">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="10" cy="10" r="5" stroke="white" stroke-width="1.4"/><circle cx="20" cy="10" r="5" stroke="white" stroke-width="1.4"/><path d="M4 24c0-4 2.686-6 6-6M18 18c3.314 0 6 2 6 6" stroke="white" stroke-width="1.4" stroke-linecap="round"/><path d="M14 14v6" stroke="white" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <div>
+          <div class="ig-footer-title">ARTIST-LED &amp; COLLABORATIVE</div>
+          <p>Works with different artists, styles and visual languages.</p>
+        </div>
+      </div>
+      <div class="ig-footer-item">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="white" stroke-width="1.4"/><path d="M4 14h20M14 4 Q8 14 14 24 Q20 14 14 4" stroke="white" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <div>
+          <div class="ig-footer-title">BEYOND THE MUSEUM</div>
+          <p>Applicable to public spaces, festivals, educational and civic environments.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /infographic -->
+</section>
+
 <!-- ══ MANIFESTO ══ -->
 <section class="manifesto-section">
   <div class="manifesto-lines">
-    <div class="manifesto-line reveal">We are standing at a moment where cultural institutions hold more content than ever,yet people experience it increasingly alone. </div>
+    <div class="manifesto-line reveal">We are standing at a moment where cultural institutions hold more content than ever,</div>
+    <div class="manifesto-line reveal reveal-delay-1">yet people experience it increasingly alone.</div>
     <div class="manifesto-line accent reveal reveal-delay-2">LIVING FIELD</div>
     <div class="manifesto-line reveal reveal-delay-2">is not an interactive installation.</div>
     <div class="manifesto-line purple reveal reveal-delay-3">This is a new cultural interface.</div>
