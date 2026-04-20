@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Living Field — LACMA Art+Tech Lab 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0a0a08;
+  --white: #f7f4ee;
+  --purple: #6b4fd8;
+  --purple-light: #ede8ff;
+  --gray: #3d3d38;
+  --muted: #8a887f;
+  --line: rgba(10,10,8,0.1);
+  --line-light: rgba(247,244,238,0.12);
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-serif: 'Libre Baskerville', serif;
+  --font-sans: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── GRAIN ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  background: var(--black);
+  color: var(--white);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 40px 64px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-nav {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(247,244,238,0.4);
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.2s;
+}
+
+.hero-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 1.2s cubic-bezier(0.16,1,0.3,1) forwards 0.4s;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 24px;
+}
+
+.hero-eyebrow span {
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: var(--purple);
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(80px, 16vw, 200px);
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+
+.hero-subtitle {
+  font-family: var(--font-serif);
+  font-size: clamp(16px, 2vw, 22px);
+  font-style: italic;
+  color: rgba(247,244,238,0.55);
+  max-width: 560px;
+  line-height: 1.55;
+}
+
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 1s;
+}
+
+.hero-tagline {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: rgba(247,244,238,0.3);
+  letter-spacing: 0.06em;
+}
+
+/* decorative orb */
+.hero-orb {
+  position: absolute;
+  right: -200px;
+  top: 50%;
+  transform: translateY(-60%);
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  border: 1px solid rgba(107,79,216,0.2);
+  pointer-events: none;
+  animation: fadeIn 3s ease forwards 0.8s;
+  opacity: 0;
+}
+.hero-orb::before {
+  content: '';
+  position: absolute;
+  inset: 80px;
+  border-radius: 50%;
+  border: 1px solid rgba(107,79,216,0.15);
+}
+.hero-orb::after {
+  content: '';
+  position: absolute;
+  inset: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(107,79,216,0.08) 0%, transparent 70%);
+}
+
+/* ══════════════════════════════════
+   QUESTION SLIDE
+══════════════════════════════════ */
+.question-slide {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 64px;
+  border-bottom: 1px solid var(--line);
+  background: var(--white);
+}
+
+.question-inner {
+  max-width: 900px;
+}
+
+.question-pre {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.question-pre::before { content: ''; display: block; width: 20px; height: 1px; background: var(--muted); }
+
+.question-context {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 56px;
+  max-width: 640px;
+}
+
+.question-context strong {
+  color: var(--black);
+  font-weight: 500;
+}
+
+.question-text {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 4vw, 48px);
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--black);
+  border-left: 3px solid var(--purple);
+  padding-left: 40px;
+}
+
+/* ══════════════════════════════════
+   THREE-LINE THESIS
+══════════════════════════════════ */
+.thesis-three {
+  background: var(--black);
+  color: var(--white);
+  padding: 120px 64px;
+  border-bottom: 1px solid var(--line);
+}
+
+.thesis-three-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.thesis-line {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line-light);
+}
+.thesis-line:first-child { border-top: 1px solid var(--line-light); }
+
+.thesis-line-num {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(247,244,238,0.25);
+  min-width: 24px;
+}
+
+.thesis-line-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--purple);
+  min-width: 180px;
+}
+
+.thesis-line-text {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--white);
+}
+
+/* ══════════════════════════════════
+   HOW IT WORKS — 6 STEPS
+══════════════════════════════════ */
+.how-section {
+  padding: 120px 64px;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 80px;
+}
+
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before { content: attr(data-n); font-size: 10px; color: var(--muted); opacity: 0.5; }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  border: 1px solid var(--line);
+}
+
+.step-card {
+  padding: 36px 28px 40px;
+  border-right: 1px solid var(--line);
+  position: relative;
+  transition: background 0.3s ease;
+}
+.step-card:last-child { border-right: none; }
+.step-card:hover { background: var(--purple-light); }
+
+.step-card-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.step-card-connector {
+  position: absolute;
+  top: 50px;
+  right: -1px;
+  width: 1px;
+  height: 1px;
+}
+
+.step-card-title {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.step-card-body {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* arrow connector between steps */
+.steps-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 0;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+/* ══════════════════════════════════
+   DUAL LAYER
+══════════════════════════════════ */
+.dual-section {
+  padding: 120px 64px;
+  border-bottom: 1px solid var(--line);
+}
+
+.dual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 64px;
+}
+
+.dual-card {
+  padding: 56px 48px;
+  position: relative;
+}
+
+.dual-card-passive {
+  background: rgba(10,10,8,0.04);
+  border: 1px solid var(--line);
+}
+
+.dual-card-active {
+  background: var(--black);
+  color: var(--white);
+}
+
+.dual-card-tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 2px;
+}
+
+.dual-card-passive .dual-card-tag {
+  background: var(--line);
+  color: var(--muted);
+}
+
+.dual-card-active .dual-card-tag {
+  background: var(--purple);
+  color: var(--white);
+}
+
+.dual-card-title {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-style: italic;
+  margin-bottom: 20px;
+  line-height: 1.25;
+}
+
+.dual-card-active .dual-card-title { color: var(--white); }
+
+.dual-card-body {
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.dual-card-passive .dual-card-body { color: var(--muted); }
+.dual-card-active .dual-card-body { color: rgba(247,244,238,0.6); }
+
+.dual-bottom {
+  margin-top: 64px;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ══════════════════════════════════
+   LIVING ARTWORK
+══════════════════════════════════ */
+.artwork-section {
+  padding: 120px 64px;
+  border-bottom: 1px solid var(--line);
+  background: var(--black);
+  color: var(--white);
+}
+
+.artwork-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-top: 64px;
+  align-items: start;
+}
+
+.artwork-visual {
+  aspect-ratio: 4/3;
+  border: 1px solid var(--line-light);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated mural placeholder */
+.mural-animation {
+  position: absolute;
+  inset: 0;
+  background: var(--black);
+}
+
+.mural-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  animation: float 6s ease-in-out infinite;
+}
+
+.mural-orb:nth-child(1) {
+  width: 200px; height: 200px;
+  background: rgba(107,79,216,0.5);
+  top: 20%; left: 10%;
+  animation-delay: 0s;
+}
+.mural-orb:nth-child(2) {
+  width: 150px; height: 150px;
+  background: rgba(107,79,216,0.3);
+  top: 50%; left: 50%;
+  animation-delay: -2s;
+}
+.mural-orb:nth-child(3) {
+  width: 180px; height: 180px;
+  background: rgba(160,130,255,0.2);
+  top: 10%; right: 10%;
+  animation-delay: -4s;
+}
+
+.mural-label {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(247,244,238,0.3);
+}
+
+.artwork-content .section-label { color: rgba(247,244,238,0.3); }
+
+.artwork-content h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.3;
+  color: var(--white);
+  margin: 32px 0 24px;
+}
+
+.artwork-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(247,244,238,0.55);
+  margin-bottom: 20px;
+}
+
+.artwork-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line-light);
+}
+
+.artwork-tag {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  color: rgba(247,244,238,0.5);
+}
+
+.artwork-tag::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--purple);
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════
+   SCALE
+══════════════════════════════════ */
+.scale-section {
+  padding: 120px 64px;
+  border-bottom: 1px solid var(--line);
+}
+
+.scale-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 64px;
+  border: 1px solid var(--line);
+}
+
+.scale-cell {
+  padding: 40px 32px;
+  border-right: 1px solid var(--line);
+}
+.scale-cell:last-child { border-right: none; }
+
+.scale-cell-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.scale-cell-title {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 12px;
+}
+
+.scale-cell-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ══════════════════════════════════
+   LACMA ALIGNMENT
+══════════════════════════════════ */
+.lacma-section {
+  padding: 120px 64px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(10,10,8,0.03);
+}
+
+.lacma-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 64px;
+}
+
+.lacma-cell {
+  background: var(--white);
+  padding: 48px 40px;
+  border: 1px solid var(--line);
+}
+
+.lacma-q {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 16px;
+}
+
+.lacma-a {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--gray);
+}
+
+/* ══════════════════════════════════
+   MANIFESTO
+══════════════════════════════════ */
+.manifesto-section {
+  min-height: 100vh;
+  background: var(--black);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 64px;
+}
+
+.manifesto-lines {
+  max-width: 800px;
+}
+
+.manifesto-line {
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 3vw, 36px);
+  font-style: italic;
+  line-height: 1.4;
+  color: rgba(247,244,238,0.25);
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(247,244,238,0.06);
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+.manifesto-line:hover { color: var(--white); }
+.manifesto-line.accent { color: var(--white); font-style: normal; font-family: var(--font-display); font-size: clamp(28px, 4vw, 52px); letter-spacing: 0.02em; }
+.manifesto-line.purple { color: var(--purple); }
+
+.manifesto-footer {
+  margin-top: 80px;
+  padding-top: 48px;
+  border-top: 1px solid var(--line-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.manifesto-footer-title {
+  font-family: var(--font-display);
+  font-size: 40px;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  opacity: 0.4;
+}
+
+.manifesto-footer-meta {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(247,244,238,0.25);
+  text-align: right;
+}
+
+/* ══════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -20px) scale(1.05); }
+  66% { transform: translate(-15px, 10px) scale(0.95); }
+}
+
+@media (max-width: 900px) {
+  .hero, .question-slide, .thesis-three, .how-section, .dual-section,
+  .artwork-section, .scale-section, .lacma-section, .manifesto-section {
+    padding: 64px 24px;
+  }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .dual-grid, .artwork-grid, .lacma-grid { grid-template-columns: 1fr; }
+  .scale-grid { grid-template-columns: 1fr 1fr; }
+  .thesis-line { flex-direction: column; gap: 8px; }
+  .thesis-line-label { min-width: auto; }
+  .manifesto-footer { flex-direction: column; gap: 24px; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero-orb"></div>
+
+  <div class="hero-nav">
+    <span>Radiant IRIS · Mirror AI Lab</span>
+    <span>LACMA Art+Tech Lab — Open Call 2026</span>
+  </div>
+
+  <div class="hero-center">
+    <div class="hero-eyebrow"><span></span>A relational layer for existing exhibitions</div>
+    <h1>LIVING<br>FIELD</h1>
+    <p class="hero-subtitle">A scalable, AI-mediated system that adds a relational layer to museum exhibitions—transforming visitors from passive observers into co-creators of a shared, evolving artwork.</p>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-tagline">Participatory · AI-mediated · Relational · Scalable</div>
+    <div class="hero-tagline">Deadline — April 22, 2026</div>
+  </div>
+</header>
+
+<!-- ══ QUESTION SLIDE ══ -->
+<section class="question-slide">
+  <div class="question-inner">
+    <div class="question-pre reveal">The problem</div>
+    <p class="question-context reveal reveal-delay-1">
+      We are standing at a moment where cultural institutions hold more content than ever,<br>
+      yet people experience it increasingly <strong>alone.</strong><br><br>
+      Museums have become spaces of observation.<br>
+      Visitors move through them silently, individually, often mediated by screens.<br>
+      What is missing is not information—but <strong>connection.</strong>
+    </p>
+    <p class="question-text reveal reveal-delay-2">
+      What if the museum was not a place<br>to look at art—but a place where<br>art happens <em>between</em> people?
+    </p>
+  </div>
+</section>
+
+<!-- ══ THREE-LINE THESIS ══ -->
+<div class="thesis-three">
+  <div class="thesis-three-lines">
+    <div class="thesis-line reveal">
+      <span class="thesis-line-num">01</span>
+      <span class="thesis-line-label">The exhibition is</span>
+      <span class="thesis-line-text">THE CONTEXT</span>
+    </div>
+    <div class="thesis-line reveal reveal-delay-2">
+      <span class="thesis-line-num">02</span>
+      <span class="thesis-line-label">Human interaction is</span>
+      <span class="thesis-line-text">THE CONTENT</span>
+    </div>
+    <div class="thesis-line reveal reveal-delay-4">
+      <span class="thesis-line-num">03</span>
+      <span class="thesis-line-label">The artwork is</span>
+      <span class="thesis-line-text">THE RESULT</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how-section">
+  <div class="section-header">
+    <div class="section-label reveal" data-n="—">How it works</div>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step-card reveal">
+      <div class="step-card-num">1</div>
+      <div class="step-card-title">Exhibition<br>as context</div>
+      <p class="step-card-body">Any exhibition in any museum becomes the context. Its themes, artworks and narratives serve as the starting point.</p>
+    </div>
+    <div class="step-card reveal reveal-delay-1">
+      <div class="step-card-num">2</div>
+      <div class="step-card-title">AI navigation +<br>interaction script</div>
+      <p class="step-card-body">Visitors put on headphones. The AI guide navigates them through the exhibition and invites them to take part in simple, meaningful interactions.</p>
+    </div>
+    <div class="step-card reveal reveal-delay-2">
+      <div class="step-card-num">3</div>
+      <div class="step-card-title">People interact<br>with each other</div>
+      <p class="step-card-body">Participants engage in micro-interactions, collaborations and shared moments—both with others and in response to the artworks.</p>
+    </div>
+    <div class="step-card reveal reveal-delay-3">
+      <div class="step-card-num">4</div>
+      <div class="step-card-title">Behavioral data<br>is generated</div>
+      <p class="step-card-body">The system captures anonymized data about interactions, movement, proximity, responses and collective dynamics in real time.</p>
+    </div>
+    <div class="step-card reveal reveal-delay-4">
+      <div class="step-card-num">5</div>
+      <div class="step-card-title">Artist translates<br>data into visual language</div>
+      <p class="step-card-body">A collaborating artist interprets the collective patterns and translates them into a unique visual language and aesthetic approach.</p>
+    </div>
+    <div class="step-card reveal reveal-delay-5">
+      <div class="step-card-num">6</div>
+      <div class="step-card-title">New artwork<br>emerges</div>
+      <p class="step-card-body">A dynamic artwork—a living mural—emerges in real time, reflecting the human relationships within this exhibition, on this day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DUAL LAYER ══ -->
+<section class="dual-section">
+  <div class="section-label reveal" data-n="—">A dual museum experience</div>
+  <p class="reveal" style="max-width:640px;margin-top:24px;color:var(--muted);font-size:16px;">
+    Living Field introduces an optional relational layer within existing exhibitions. The museum remains the same. The experience becomes deeper.
+  </p>
+
+  <div class="dual-grid">
+    <div class="dual-card dual-card-passive reveal">
+      <div class="dual-card-tag">Passive visit</div>
+      <div class="dual-card-title">The exhibition<br>as it always was</div>
+      <p class="dual-card-body">Visitors can experience the exhibition as usual—moving through the space at their own pace, engaging with artworks, following their own path. The traditional museum experience remains fully intact.</p>
+    </div>
+    <div class="dual-card dual-card-active reveal reveal-delay-2">
+      <div class="dual-card-tag">Active participation</div>
+      <div class="dual-card-title">A parallel experience<br>shaped by interaction</div>
+      <p class="dual-card-body">Those who enter the system step into a parallel experience—one that unfolds through interaction, presence, and choice. Guided by spatial audio and AI-mediated prompts, participants become co-creators of something that did not exist before they arrived.</p>
+    </div>
+  </div>
+
+  <p class="dual-bottom reveal">Participation is optional. But presence is always meaningful.</p>
+</section>
+
+<!-- ══ LIVING ARTWORK ══ -->
+<section class="artwork-section">
+  <div class="artwork-grid">
+    <div class="artwork-visual reveal">
+      <div class="mural-animation">
+        <div class="mural-orb"></div>
+        <div class="mural-orb"></div>
+        <div class="mural-orb"></div>
+      </div>
+      <div class="mural-label">Living mural — evolving in real time</div>
+    </div>
+
+    <div class="artwork-content reveal reveal-delay-2">
+      <div class="section-label" data-n="—" style="color:rgba(247,244,238,0.3)">The living artwork</div>
+      <h3>A new artwork emerges<br>from the people within it</h3>
+      <p>Each exhibition invites a different artist to engage with this field—not to illustrate it, but to interpret it. Using their own visual language, the artist transforms collective interaction into a real-time, evolving mural.</p>
+      <p>It is generated continuously. Shaped by presence. Changed by behavior. No two iterations are the same.</p>
+      <p>In parallel, each participant receives a personal reflection—a short, AI-generated narrative that mirrors how they moved through the system, how they related, how they chose.</p>
+
+      <div class="artwork-tags">
+        <div class="artwork-tag">Dynamic &amp; unique every time</div>
+        <div class="artwork-tag">Changes with every visitor, every day</div>
+        <div class="artwork-tag">Each exhibition creates its own visual signature</div>
+        <div class="artwork-tag">Personal narrative reflection for each participant</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCALE ══ -->
+<section class="scale-section">
+  <div class="section-label reveal" data-n="—">Scale &amp; impact</div>
+  <p class="reveal" style="max-width:600px;margin-top:24px;color:var(--muted);font-size:16px;">
+    The project establishes a scalable system that can be embedded into any exhibition, continuously generating new experiences, interactions, and artworks.
+  </p>
+
+  <div class="scale-grid">
+    <div class="scale-cell reveal">
+      <div class="scale-cell-icon">⬡</div>
+      <div class="scale-cell-title">Scalable &amp; adaptable</div>
+      <p class="scale-cell-body">Works in any museum, any exhibition, any cultural context. The system adapts—the exhibition changes, the artist changes, the people change.</p>
+    </div>
+    <div class="scale-cell reveal reveal-delay-1">
+      <div class="scale-cell-icon">◎</div>
+      <div class="scale-cell-title">A living laboratory</div>
+      <p class="scale-cell-body">Each implementation is a sandbox for testing new social interaction models. The development process itself is participatory and visible.</p>
+    </div>
+    <div class="scale-cell reveal reveal-delay-2">
+      <div class="scale-cell-icon">△</div>
+      <div class="scale-cell-title">Artist-led &amp; collaborative</div>
+      <p class="scale-cell-body">Works with different artists, styles and visual languages. Authorship is distributed across artist, system, and visitors.</p>
+    </div>
+    <div class="scale-cell reveal reveal-delay-3">
+      <div class="scale-cell-icon">◻</div>
+      <div class="scale-cell-title">Beyond the museum</div>
+      <p class="scale-cell-body">Applicable to public spaces, festivals, educational and civic environments. A new cultural interface.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LACMA ALIGNMENT ══ -->
+<section class="lacma-section">
+  <div class="section-label reveal" data-n="—">Alignment with LACMA Art+Tech Lab</div>
+
+  <div class="lacma-grid">
+    <div class="lacma-cell reveal">
+      <div class="lacma-q">Artistic merit</div>
+      <p class="lacma-a">The project is artist-led and rooted in a clear artistic inquiry: how human relationships can become both the medium and the material of an artwork. Each iteration co-creates a new visual expression through collaboration between participants, system dynamics, and artists. Authorship becomes relational and distributed.</p>
+    </div>
+    <div class="lacma-cell reveal reveal-delay-1">
+      <div class="lacma-q">Emerging technology</div>
+      <p class="lacma-a">Living Field integrates spatial audio, real-time data processing, and generative AI—not as tools for representation, but as mediators of human interaction. AI functions as an active agent: facilitating encounters, shaping participant pathways, generating narrative responses. An alternative paradigm for human–AI interaction that is relational, spatial, embodied.</p>
+    </div>
+    <div class="lacma-cell reveal reveal-delay-2">
+      <div class="lacma-q">Models &amp; methods for others</div>
+      <p class="lacma-a">Living Field proposes a transferable artistic and technological framework applicable across museums, exhibitions, and public cultural contexts. The behavioral interaction model, real-time visualization system, and generative narrative layer can be adapted, shared, and built upon. The project also introduces a modular artistic layer for ongoing collaboration and open calls.</p>
+    </div>
+    <div class="lacma-cell reveal reveal-delay-3">
+      <div class="lacma-q">Public engagement</div>
+      <p class="lacma-a">The development process is inherently public-facing. Early-stage prototypes can be presented as lightweight setups within museum spaces, functioning as both public engagement and live research environments. Rather than being developed in isolation, Living Field evolves through continuous interaction with its audience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MANIFESTO ══ -->
+<section class="manifesto-section">
+  <div class="manifesto-lines">
+    <div class="manifesto-line reveal">We are standing at a moment where cultural institutions hold more content than ever,</div>
+    <div class="manifesto-line reveal reveal-delay-1">yet people experience it increasingly alone.</div>
+    <div class="manifesto-line accent reveal reveal-delay-2">LIVING FIELD</div>
+    <div class="manifesto-line reveal reveal-delay-2">is not an interactive installation.</div>
+    <div class="manifesto-line purple reveal reveal-delay-3">This is a new cultural interface.</div>
+    <div class="manifesto-line reveal reveal-delay-3">One that shifts:</div>
+    <div class="manifesto-line reveal reveal-delay-4">from consumption to participation</div>
+    <div class="manifesto-line reveal reveal-delay-4">from observation to relation</div>
+    <div class="manifesto-line reveal reveal-delay-5">from static objects to living systems</div>
+    <div class="manifesto-line accent reveal reveal-delay-6">WE DON'T DESIGN THE EXPERIENCE.</div>
+    <div class="manifesto-line purple reveal reveal-delay-6">We design the conditions for it to happen.</div>
+  </div>
+
+  <div class="manifesto-footer reveal">
+    <div class="manifesto-footer-title">LIVING FIELD</div>
+    <div class="manifesto-footer-meta">
+      Radiant IRIS · Mirror AI Lab<br>
+      LACMA Art+Tech Lab — 2026
+    </div>
+  </div>
+</section>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
