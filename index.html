@@ -144,16 +144,7 @@ h1 {
 }
 
 /* decorative orb */
-.hero-orb {
-  position: absolute;
-  right: -200px;
-  top: -180px;
-  width: 110%;
-  height: 130%;
-  pointer-events: none;
-  opacity: 0;
-  animation: fadeIn 2.5s ease forwards 0.6s;
-}
+.hero-orb { display: none; }
 .hero-orb::before {
   content: '';
   position: absolute;
@@ -177,6 +168,22 @@ h1 {
     radial-gradient(ellipse 65% 60% at 65% 42%, rgba(139,92,246,0.15) 0%, transparent 65%),
     radial-gradient(ellipse 40% 50% at 82% 75%, rgba(167,139,250,0.1) 0%, transparent 55%);
   filter: blur(48px);
+}
+
+.hero-swirl {
+  position: absolute;
+  right: -60px;
+  top: -40px;
+  width: 62%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards 0.7s;
+  z-index: 1;
+}
+.hero-swirl svg {
+  width: 100%;
+  height: 100%;
 }
 
 .hero-circles {
@@ -1455,6 +1462,10 @@ h2.team-title em {
 /* ══════════════════════════════════
    ANIMATIONS
 ══════════════════════════════════ */
+@keyframes d1 { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(20px,-15px) scale(1.05)} 70%{transform:translate(-12px,10px) scale(.97)} }
+@keyframes d2 { 0%,100%{transform:translate(0,0)} 35%{transform:translate(-16px,18px)} 65%{transform:translate(12px,-10px)} }
+@keyframes d3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(10px,16px) scale(1.03)} }
+@keyframes hpulse { 0%,100%{opacity:.5} 50%{opacity:.9} }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: none; }
@@ -1489,6 +1500,43 @@ h2.team-title em {
 <header class="hero">
   <div class="hero-orb"></div>
   <div class="hero-circles"></div>
+  <div class="hero-swirl" aria-hidden="true">
+    <svg viewBox="0 0 540 380" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <filter id="fb1"><feGaussianBlur stdDeviation="18"/></filter>
+        <filter id="fb2"><feGaussianBlur stdDeviation="5"/></filter>
+      </defs>
+      <ellipse cx="360" cy="180" rx="180" ry="150" fill="rgba(91,33,182,.35)" filter="url(#fb1)" style="animation:d1 10s ease-in-out infinite"/>
+      <ellipse cx="400" cy="150" rx="100" ry="85" fill="rgba(139,92,246,.3)" filter="url(#fb1)" style="animation:d2 8s ease-in-out infinite"/>
+      <circle cx="300" cy="120" r="1.5" fill="rgba(196,181,253,.7)" style="animation:d3 7s ease-in-out infinite"/>
+      <circle cx="330" cy="90" r="2.5" fill="rgba(167,139,250,.65)" style="animation:d1 9s ease-in-out infinite .5s"/>
+      <circle cx="370" cy="70" r="1.8" fill="rgba(216,180,254,.6)" style="animation:d2 8s ease-in-out infinite 1s"/>
+      <circle cx="410" cy="85" r="3" fill="rgba(139,92,246,.6)" style="animation:d3 10s ease-in-out infinite"/>
+      <circle cx="450" cy="60" r="1.5" fill="rgba(196,181,253,.5)"/>
+      <circle cx="480" cy="100" r="2" fill="rgba(167,139,250,.55)" style="animation:d1 11s ease-in-out infinite 2s"/>
+      <circle cx="500" cy="140" r="1.5" fill="rgba(216,180,254,.4)"/>
+      <circle cx="520" cy="80" r="2.5" fill="rgba(196,181,253,.45)" style="animation:d2 9s ease-in-out infinite"/>
+      <circle cx="340" cy="150" r="4" fill="rgba(139,92,246,.5)" filter="url(#fb2)" style="animation:hpulse 4s ease-in-out infinite"/>
+      <circle cx="380" cy="130" r="5" fill="rgba(167,139,250,.45)" filter="url(#fb2)" style="animation:hpulse 5s ease-in-out infinite .8s"/>
+      <circle cx="420" cy="160" r="3.5" fill="rgba(196,181,253,.5)" filter="url(#fb2)" style="animation:hpulse 3.5s ease-in-out infinite .3s"/>
+      <circle cx="350" cy="200" r="2.5" fill="rgba(139,92,246,.4)" style="animation:d3 12s ease-in-out infinite"/>
+      <circle cx="460" cy="190" r="2" fill="rgba(167,139,250,.4)" style="animation:d1 8s ease-in-out infinite 1.5s"/>
+      <circle cx="490" cy="230" r="1.5" fill="rgba(196,181,253,.35)"/>
+      <circle cx="310" cy="240" r="2" fill="rgba(124,58,237,.4)" style="animation:d2 13s ease-in-out infinite"/>
+      <circle cx="440" cy="250" r="1.8" fill="rgba(139,92,246,.35)" style="animation:d3 10s ease-in-out infinite 1s"/>
+      <circle cx="390" cy="270" r="3" fill="rgba(167,139,250,.3)" style="animation:d1 9s ease-in-out infinite 2.5s"/>
+      <circle cx="510" cy="170" r="2.5" fill="rgba(216,180,254,.4)" style="animation:d2 11s ease-in-out infinite .7s"/>
+      <circle cx="320" cy="170" r="1.5" fill="rgba(196,181,253,.5)" style="animation:hpulse 6s ease-in-out infinite"/>
+      <circle cx="465" cy="310" r="1.5" fill="rgba(167,139,250,.3)"/>
+      <circle cx="430" cy="290" r="2" fill="rgba(139,92,246,.28)" style="animation:d3 14s ease-in-out infinite"/>
+      <circle cx="490" cy="280" r="1.5" fill="rgba(196,181,253,.25)"/>
+      <circle cx="350" cy="300" r="1.8" fill="rgba(124,58,237,.25)" style="animation:d1 12s ease-in-out infinite 3s"/>
+      <circle cx="270" cy="150" r="1.5" fill="rgba(167,139,250,.4)" style="animation:d2 10s ease-in-out infinite 1.2s"/>
+      <circle cx="255" cy="200" r="2" fill="rgba(139,92,246,.35)" style="animation:d3 11s ease-in-out infinite"/>
+      <circle cx="280" cy="260" r="1.5" fill="rgba(196,181,253,.3)"/>
+      <ellipse cx="375" cy="145" rx="22" ry="18" fill="rgba(245,243,255,.45)" filter="url(#fb2)" style="animation:hpulse 3s ease-in-out infinite"/>
+    </svg>
+  </div>
 
   <div class="hero-nav">
     <span>Radiant IRIS · Mirror AI Lab</span>
@@ -1961,7 +2009,7 @@ h2.team-title em {
 
   <div class="team-inner">
     <div class="team-logo-block reveal">
-      <img src="radiant_iris_logo.jpeg" alt="Radiant IRIS" class="team-logo">
+      <img src="Radiant_Iris_large.png" alt="Radiant IRIS" class="team-logo">
     </div>
 
     <div class="team-content">
@@ -1978,11 +2026,11 @@ h2.team-title em {
         </div>
         <div class="team-member">
           <div class="team-member-role">StoryWorld Developer</div>
-          <div class="team-member-name">Anastasia Akterskaya</div>
+          <div class="team-member-name">Nastia Akterskaia</div>
         </div>
         <div class="team-member">
           <div class="team-member-role">Creative Producer</div>
-          <div class="team-member-name">Anastasia Nesterova</div>
+          <div class="team-member-name">Ana Nest</div>
         </div>
         <div class="team-member">
           <div class="team-member-role">Business & Partnerships</div>
