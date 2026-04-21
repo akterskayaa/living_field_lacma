@@ -1129,6 +1129,243 @@ h1 {
 }
 
 /* ══════════════════════════════════
+   MVP & SCALE
+══════════════════════════════════ */
+.mvp-section {
+  padding: 120px 64px;
+  border-bottom: 1px solid var(--line);
+  background: var(--white);
+}
+
+.mvp-inner {
+  display: grid;
+  grid-template-columns: 1fr 64px 1fr;
+  gap: 0;
+  align-items: start;
+  margin-bottom: 80px;
+}
+
+.mvp-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mvp-label::before { content: ''; display: block; width: 16px; height: 1px; background: var(--muted); }
+
+.mvp-left .mvp-label::before { background: var(--muted); }
+.mvp-right .mvp-label { color: var(--purple); }
+.mvp-right .mvp-label::before { background: var(--purple); }
+
+.mvp-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  color: var(--black);
+  margin-bottom: 28px;
+}
+.mvp-title em { font-style: italic; color: var(--purple); font-family: var(--font-serif); font-size: 0.85em; }
+
+.mvp-body {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 18px;
+  max-width: 440px;
+}
+
+.mvp-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+}
+
+.mvp-scale-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.mvp-scale-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.mvp-scale-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--purple);
+  letter-spacing: 0.08em;
+  min-width: 24px;
+}
+
+.mvp-scale-text {
+  font-size: 15px;
+  color: var(--black);
+  font-family: var(--font-sans);
+}
+
+.mvp-bottom {
+  font-family: var(--font-serif);
+  font-size: clamp(18px, 2.2vw, 26px);
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  font-style: italic;
+}
+.mvp-bottom em { color: var(--black); }
+
+/* ══════════════════════════════════
+   TEAM
+══════════════════════════════════ */
+.team-section {
+  min-height: 100vh;
+  background: var(--black);
+  color: var(--white);
+  padding: 100px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-blob {
+  position: absolute;
+  top: -100px;
+  left: -200px;
+  width: 800px;
+  height: 700px;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 45% 55% at 30% 40%, rgba(139,92,246,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 40% at 15% 70%, rgba(107,33,168,0.16) 0%, transparent 55%),
+    radial-gradient(ellipse 25% 30% at 50% 20%, rgba(167,139,250,0.1) 0%, transparent 50%);
+  filter: blur(28px);
+}
+
+.team-inner {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 80px;
+  align-items: start;
+  flex: 1;
+}
+
+.team-logo-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 8px;
+}
+
+.team-logo {
+  width: 180px;
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
+}
+
+.team-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.team-label::before { content: ''; display: block; width: 16px; height: 1px; background: var(--purple); }
+
+h2.team-title {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 8vw, 110px);
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+h2.team-title em {
+  font-style: italic;
+  color: var(--purple);
+  font-family: var(--font-serif);
+  font-size: 0.85em;
+}
+
+.team-body {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(247,244,238,0.55);
+  margin-bottom: 18px;
+  max-width: 580px;
+}
+
+.team-members {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 48px;
+  border-top: 1px solid rgba(247,244,238,0.1);
+}
+
+.team-member {
+  padding: 20px 24px 20px 0;
+  border-bottom: 1px solid rgba(247,244,238,0.08);
+  border-right: 1px solid rgba(247,244,238,0.08);
+}
+.team-member:nth-child(2n) { padding-left: 24px; padding-right: 0; border-right: none; }
+.team-member:nth-last-child(-n+2) { border-bottom: none; }
+
+.team-member-role {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 6px;
+}
+
+.team-member-name {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-style: italic;
+  color: var(--white);
+}
+
+.team-footer {
+  padding-top: 48px;
+  border-top: 1px solid rgba(247,244,238,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.team-footer-line {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(247,244,238,0.5);
+}
+.team-footer-line.muted { color: rgba(247,244,238,0.2); }
+
+/* ══════════════════════════════════
    MANIFESTO
 ══════════════════════════════════ */
 .manifesto-section {
@@ -1400,6 +1637,50 @@ h1 {
     </div>
   </div>
 </section>
+
+<!-- ══ MVP & SCALE ══ -->
+<section class="mvp-section">
+  <div class="mvp-inner">
+    <div class="mvp-left reveal">
+      <div class="mvp-label">Where we start</div>
+      <div class="mvp-title">LACMA<br><em>as the first field</em></div>
+      <p class="mvp-body">The first iteration of Living Field will be prototyped and tested within a LACMA exhibition — using the museum's existing collection and themes as context, and its visitors as the first participants in a live relational system.</p>
+      <p class="mvp-body">This MVP will allow us to validate the core mechanics: AI-guided interaction, real-time behavioral data, and the generative mural — in a real museum environment, with real audiences.</p>
+    </div>
+
+    <div class="mvp-arrow reveal reveal-delay-2">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <path d="M8 24h32M28 14l12 10-12 10" stroke="#6b4fd8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="mvp-right reveal reveal-delay-3">
+      <div class="mvp-label">Where we go</div>
+      <div class="mvp-title">Any exhibition.<br><em>Any museum.</em></div>
+      <p class="mvp-body">Living Field is designed as a scalable, transferable system. Once the prototype is validated at LACMA, the framework can be embedded into any exhibition — adapting to different themes, collections, artists, and institutions.</p>
+      <div class="mvp-scale-items">
+        <div class="mvp-scale-item reveal reveal-delay-3">
+          <div class="mvp-scale-num">01</div>
+          <div class="mvp-scale-text">Other museums & galleries worldwide</div>
+        </div>
+        <div class="mvp-scale-item reveal reveal-delay-4">
+          <div class="mvp-scale-num">02</div>
+          <div class="mvp-scale-text">Cultural festivals & public institutions</div>
+        </div>
+        <div class="mvp-scale-item reveal reveal-delay-5">
+          <div class="mvp-scale-num">03</div>
+          <div class="mvp-scale-text">Educational & civic environments</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mvp-bottom reveal">
+    The exhibition changes. The artist changes. The people change.<br>
+    <em>The system remains — and keeps generating new experiences.</em>
+  </div>
+</section>
+
 
 <!-- ══ SCALE ══ -->
 <section class="scale-section">
@@ -1674,6 +1955,50 @@ h1 {
   </div><!-- /infographic -->
 </section>
 
+<!-- ══ TEAM ══ -->
+<section class="team-section">
+  <div class="team-blob"></div>
+
+  <div class="team-inner">
+    <div class="team-logo-block reveal">
+      <img src="radiant_iris_logo.jpeg" alt="Radiant IRIS" class="team-logo">
+    </div>
+
+    <div class="team-content">
+      <div class="team-label reveal">The team behind Living Field</div>
+      <h2 class="team-title reveal">Radiant<br><em>IRIS</em></h2>
+      <p class="team-body reveal">Radiant IRIS is a multidisciplinary collective working at the intersection of art, storytelling, and human experience design.</p>
+      <p class="team-body reveal reveal-delay-1">The team creates participatory systems and immersive environments that transform how people perceive, relate, and create meaning together.</p>
+      <p class="team-body reveal reveal-delay-2">Combining artistic direction, strategic design, and emerging technologies, Radiant IRIS develops projects that explore the role of human connection in shaping cultural experience.</p>
+
+      <div class="team-members reveal reveal-delay-3">
+        <div class="team-member">
+          <div class="team-member-role">Experience Director</div>
+          <div class="team-member-name">Krishnan Unnikrishnan</div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-role">StoryWorld Developer</div>
+          <div class="team-member-name">Anastasia Akterskaya</div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-role">Creative Producer</div>
+          <div class="team-member-name">Anastasia Nesterova</div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-role">Business & Partnerships</div>
+          <div class="team-member-name">Maxwell Kangkolo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-footer reveal">
+    <div class="team-footer-line">Living Field · LACMA Art+Tech Lab 2026</div>
+    <div class="team-footer-line muted">Proposal by Radiant IRIS · Mirror AI Lab</div>
+  </div>
+</section>
+
+
 <!-- ══ MANIFESTO ══ -->
 <section class="manifesto-section" style="position:relative;overflow:hidden;">
   <div class="manifesto-blob"></div>
@@ -1699,6 +2024,7 @@ h1 {
     </div>
   </div>
 </section>
+
 
 <script>
 const observer = new IntersectionObserver((entries) => {
